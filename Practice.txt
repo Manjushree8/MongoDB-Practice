@@ -1,0 +1,832 @@
+Microsoft Windows [Version 10.0.26100.4351]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\manjushree>mongosh
+Current Mongosh Log ID: 688709ad32598c9e41eec4a8
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.6
+Using MongoDB:          8.0.12
+Using Mongosh:          2.5.6
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-07-26T12:57:35.569+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+Explanation : CONNECTING TO MONGO
+
+Launches MongoDB shell (mongosh) to interact with your local MongoDB server.
+
+test> use libraryDB
+switched to db libraryDB
+
+Explanation:
+Switches to (or creates if not exists) the database named libraryDB.
+
+libraryDB> db.createCollection("books")
+{ ok: 1 }
+
+Explanation:
+Creates a new collection called books.
+
+libraryDB> db.books.insertOne({
+...   title: "Me Before You",
+...   author: "Jojo Moyes",
+...   genre: "Romantic Drama",
+...   year: 2012,
+...   available: true,
+...   vibe: "Emotional, Heartwarming",
+...   copies: 3
+... })
+...
+{
+  acknowledged: true,
+  insertedId: ObjectId('688709bd32598c9e41eec4a9')
+}
+
+Explanation:
+Inserts a single book document into the books collection.
+
+
+libraryDB> db.books.insertMany([
+...   {
+...     title: "The Flatshare",
+...     author: "Beth O'Leary",
+...     genre: "Romantic Comedy",
+...     year: 2019,
+...     available: true,
+...     vibe: "Funny, Soft, Feel-good",
+...     copies: 4
+...   },
+...   {
+...     title: "It Ends With Us",
+...     author: "Colleen Hoover",
+...     genre: "Contemporary Romance",
+...     year: 2016,
+...     available: true,
+...     vibe: "Intense, Emotional",
+...     copies: 2
+...   },
+...   {
+...     title: "Love & Gelato",
+...     author: "Jenna Evans Welch",
+...     genre: "Young Adult Romance",
+...     year: 2016,
+...     available: true,
+...     vibe: "Cute, Aesthetic, Light",
+...     copies: 3
+...   },
+...   {
+...     title: "To All the Boys I've Loved Before",
+...     author: "Jenny Han",
+...     genre: "Young Adult Romance",
+...     year: 2014,
+...     available: true,
+...     vibe: "Cute, Fluffy",
+...     copies: 5
+...   },
+...   {
+...     title: "The Love Hypothesis",
+...     author: "Ali Hazelwood",
+...     genre: "Romantic Comedy",
+...     year: 2021,
+...     available: true,
+...     vibe: "Nerdy, Flirty",
+...     copies: 4
+...   },
+...   {
+...     title: "The Spanish Love Deception",
+...     author: "Elena Armas",
+...     genre: "Romantic Comedy",
+...     year: 2021,
+...     available: true,
+...     vibe: "Slow Burn, Sassy",
+...     copies: 2
+...   },
+...   {
+...     title: "Eleanor Oliphant Is Completely Fine",
+...     author: "Gail Honeyman",
+...     genre: "Contemporary Fiction",
+...     year: 2017,
+...     available: true,
+...     vibe: "Soft, Emotional Growth",
+...     copies: 3
+...   },
+...   {
+...     title: "Before the Coffee Gets Cold",
+...     author: "Toshikazu Kawaguchi",
+...     genre: "Magical Realism",
+...     year: 2015,
+...     available: true,
+...     vibe: "Calm, Deep, Time-travel",
+...     copies: 2
+...   }
+... ])
+
+Explanation:
+Inserts multiple book documents into the books collection at once.
+
+... db.books.find()
+[
+  {
+    _id: ObjectId('68870929a18f7076bfeec4a9'),
+    title: 'Me Before You',
+    author: 'Jojo Moyes',
+    genre: 'Romantic Drama',
+    vibe: 'Emotional, Heartwarming',
+    themes: [ 'romance', 'life decisions', 'healing' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4aa'),
+    title: 'The Flatshare',
+    author: "Beth O'Leary",
+    genre: 'Romantic Comedy',
+    vibe: 'Funny, Soft, Feel-good',
+    themes: [ 'fake relationship', 'roommates', 'slow burn' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ab'),
+    title: 'It Ends With Us',
+    author: 'Colleen Hoover',
+    genre: 'Contemporary Romance',
+    vibe: 'Intense, Emotional',
+    themes: [ 'love', 'abuse', 'healing' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ac'),
+    title: 'Love & Gelato',
+    author: 'Jenna Evans Welch',
+    genre: 'Young Adult Romance',
+    vibe: 'Cute, Aesthetic, Light',
+    themes: [ 'travel', 'self-discovery', 'family' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ad'),
+    title: "To All the Boys I've Loved Before",
+    author: 'Jenny Han',
+    genre: 'Young Adult Romance',
+    vibe: 'Cute, Fluffy',
+    themes: [ 'fake dating', 'high school', 'family' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ae'),
+    title: 'The Love Hypothesis',
+    author: 'Ali Hazelwood',
+    genre: 'Romantic Comedy',
+    vibe: 'Nerdy, Flirty',
+    themes: [ 'fake dating', 'STEM', 'slow burn' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4af'),
+    title: 'The Spanish Love Deception',
+    author: 'Elena Armas',
+    genre: 'Romantic Comedy',
+    vibe: 'Slow Burn, Sassy',
+    themes: [ 'fake relationship', 'wedding', 'enemies to lovers' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4b0'),
+    title: 'Eleanor Oliphant Is Completely Fine',
+    author: 'Gail Honeyman',
+    genre: 'Contemporary Fiction',
+    vibe: 'Soft, Emotional Growth',
+    themes: [ 'loneliness', 'healing', 'self-love' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4b1'),
+    title: 'Before the Coffee Gets Cold',
+    author: 'Toshikazu Kawaguchi',
+    genre: 'Magical Realism',
+    vibe: 'Calm, Deep, Time-travel',
+    themes: [ 'regret', 'love', 'second chances' ]
+  },
+  {
+    _id: ObjectId('688709bd32598c9e41eec4a9'),
+    title: 'Me Before You',
+    author: 'Jojo Moyes',
+    genre: 'Romantic Drama',
+    year: 2012,
+    available: true,
+    vibe: 'Emotional, Heartwarming',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4aa'),
+    title: 'The Flatshare',
+    author: "Beth O'Leary",
+    genre: 'Romantic Comedy',
+    year: 2019,
+    available: true,
+    vibe: 'Funny, Soft, Feel-good',
+    copies: 4
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ab'),
+    title: 'It Ends With Us',
+    author: 'Colleen Hoover',
+    genre: 'Contemporary Romance',
+    year: 2016,
+    available: true,
+    vibe: 'Intense, Emotional',
+    copies: 2
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ac'),
+    title: 'Love & Gelato',
+    author: 'Jenna Evans Welch',
+    genre: 'Young Adult Romance',
+    year: 2016,
+    available: true,
+    vibe: 'Cute, Aesthetic, Light',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ad'),
+    title: "To All the Boys I've Loved Before",
+    author: 'Jenny Han',
+    genre: 'Young Adult Romance',
+    year: 2014,
+    available: true,
+    vibe: 'Cute, Fluffy',
+    copies: 5
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ae'),
+    title: 'The Love Hypothesis',
+    author: 'Ali Hazelwood',
+    genre: 'Romantic Comedy',
+    year: 2021,
+    available: true,
+    vibe: 'Nerdy, Flirty',
+    copies: 4
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4af'),
+    title: 'The Spanish Love Deception',
+    author: 'Elena Armas',
+    genre: 'Romantic Comedy',
+    year: 2021,
+    available: true,
+    vibe: 'Slow Burn, Sassy',
+    copies: 2
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4b0'),
+    title: 'Eleanor Oliphant Is Completely Fine',
+    author: 'Gail Honeyman',
+    genre: 'Contemporary Fiction',
+    year: 2017,
+    available: true,
+    vibe: 'Soft, Emotional Growth',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4b1'),
+    title: 'Before the Coffee Gets Cold',
+    author: 'Toshikazu Kawaguchi',
+    genre: 'Magical Realism',
+    year: 2015,
+    available: true,
+    vibe: 'Calm, Deep, Time-travel',
+    copies: 2
+  }
+]
+
+
+Explanation:
+Displays all documents in the books collection.
+
+libraryDB> db.books.find({ vibe: { $regex: "Emotional", $options: "i" } })
+[
+  {
+    _id: ObjectId('68870929a18f7076bfeec4a9'),
+    title: 'Me Before You',
+    author: 'Jojo Moyes',
+    genre: 'Romantic Drama',
+    vibe: 'Emotional, Heartwarming',
+    themes: [ 'romance', 'life decisions', 'healing' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ab'),
+    title: 'It Ends With Us',
+    author: 'Colleen Hoover',
+    genre: 'Contemporary Romance',
+    vibe: 'Intense, Emotional',
+    themes: [ 'love', 'abuse', 'healing' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4b0'),
+    title: 'Eleanor Oliphant Is Completely Fine',
+    author: 'Gail Honeyman',
+    genre: 'Contemporary Fiction',
+    vibe: 'Soft, Emotional Growth',
+    themes: [ 'loneliness', 'healing', 'self-love' ]
+  },
+  {
+    _id: ObjectId('688709bd32598c9e41eec4a9'),
+    title: 'Me Before You',
+    author: 'Jojo Moyes',
+    genre: 'Romantic Drama',
+    year: 2012,
+    available: true,
+    vibe: 'Emotional, Heartwarming',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ab'),
+    title: 'It Ends With Us',
+    author: 'Colleen Hoover',
+    genre: 'Contemporary Romance',
+    year: 2016,
+    available: true,
+    vibe: 'Intense, Emotional',
+    copies: 2
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4b0'),
+    title: 'Eleanor Oliphant Is Completely Fine',
+    author: 'Gail Honeyman',
+    genre: 'Contemporary Fiction',
+    year: 2017,
+    available: true,
+    vibe: 'Soft, Emotional Growth',
+    copies: 3
+  }
+]
+
+Explanation:
+Finds all books where the vibe field includes "Emotional" (case-insensitive).
+
+libraryDB> db.books.updateOne(
+...   { title: "The Spanish Love Deception" },
+...   { $set: { copies: 3 } }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+Explanation:
+Updates the copies field to 3 for the specified book.
+
+libraryDB> db.books.deleteOne({ title: "It Ends With Us" })
+{ acknowledged: true, deletedCount: 1 }
+
+Explanation:
+Deletes one book document matching the given title.
+
+
+libraryDB> db.books.find({ copies: { $lt: 4 } })
+[
+  {
+    _id: ObjectId('68870932a18f7076bfeec4af'),
+    title: 'The Spanish Love Deception',
+    author: 'Elena Armas',
+    genre: 'Romantic Comedy',
+    vibe: 'Slow Burn, Sassy',
+    themes: [ 'fake relationship', 'wedding', 'enemies to lovers' ],
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709bd32598c9e41eec4a9'),
+    title: 'Me Before You',
+    author: 'Jojo Moyes',
+    genre: 'Romantic Drama',
+    year: 2012,
+    available: true,
+    vibe: 'Emotional, Heartwarming',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ab'),
+    title: 'It Ends With Us',
+    author: 'Colleen Hoover',
+    genre: 'Contemporary Romance',
+    year: 2016,
+    available: true,
+    vibe: 'Intense, Emotional',
+    copies: 2
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ac'),
+    title: 'Love & Gelato',
+    author: 'Jenna Evans Welch',
+    genre: 'Young Adult Romance',
+    year: 2016,
+    available: true,
+    vibe: 'Cute, Aesthetic, Light',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4af'),
+    title: 'The Spanish Love Deception',
+    author: 'Elena Armas',
+    genre: 'Romantic Comedy',
+    year: 2021,
+    available: true,
+    vibe: 'Slow Burn, Sassy',
+    copies: 2
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4b0'),
+    title: 'Eleanor Oliphant Is Completely Fine',
+    author: 'Gail Honeyman',
+    genre: 'Contemporary Fiction',
+    year: 2017,
+    available: true,
+    vibe: 'Soft, Emotional Growth',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4b1'),
+    title: 'Before the Coffee Gets Cold',
+    author: 'Toshikazu Kawaguchi',
+    genre: 'Magical Realism',
+    year: 2015,
+    available: true,
+    vibe: 'Calm, Deep, Time-travel',
+    copies: 2
+  }
+]
+
+Explanation:
+Lists books with fewer than 4 copies.
+
+libraryDB> db.books.find({ genre: { $in: ["Romantic Comedy", "Young Adult Romance"] } })
+[
+  {
+    _id: ObjectId('68870932a18f7076bfeec4aa'),
+    title: 'The Flatshare',
+    author: "Beth O'Leary",
+    genre: 'Romantic Comedy',
+    vibe: 'Funny, Soft, Feel-good',
+    themes: [ 'fake relationship', 'roommates', 'slow burn' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ac'),
+    title: 'Love & Gelato',
+    author: 'Jenna Evans Welch',
+    genre: 'Young Adult Romance',
+    vibe: 'Cute, Aesthetic, Light',
+    themes: [ 'travel', 'self-discovery', 'family' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ad'),
+    title: "To All the Boys I've Loved Before",
+    author: 'Jenny Han',
+    genre: 'Young Adult Romance',
+    vibe: 'Cute, Fluffy',
+    themes: [ 'fake dating', 'high school', 'family' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ae'),
+    title: 'The Love Hypothesis',
+    author: 'Ali Hazelwood',
+    genre: 'Romantic Comedy',
+    vibe: 'Nerdy, Flirty',
+    themes: [ 'fake dating', 'STEM', 'slow burn' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4af'),
+    title: 'The Spanish Love Deception',
+    author: 'Elena Armas',
+    genre: 'Romantic Comedy',
+    vibe: 'Slow Burn, Sassy',
+    themes: [ 'fake relationship', 'wedding', 'enemies to lovers' ],
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4aa'),
+    title: 'The Flatshare',
+    author: "Beth O'Leary",
+    genre: 'Romantic Comedy',
+    year: 2019,
+    available: true,
+    vibe: 'Funny, Soft, Feel-good',
+    copies: 4
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ac'),
+    title: 'Love & Gelato',
+    author: 'Jenna Evans Welch',
+    genre: 'Young Adult Romance',
+    year: 2016,
+    available: true,
+    vibe: 'Cute, Aesthetic, Light',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ad'),
+    title: "To All the Boys I've Loved Before",
+    author: 'Jenny Han',
+    genre: 'Young Adult Romance',
+    year: 2014,
+    available: true,
+    vibe: 'Cute, Fluffy',
+    copies: 5
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ae'),
+    title: 'The Love Hypothesis',
+    author: 'Ali Hazelwood',
+    genre: 'Romantic Comedy',
+    year: 2021,
+    available: true,
+    vibe: 'Nerdy, Flirty',
+    copies: 4
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4af'),
+    title: 'The Spanish Love Deception',
+    author: 'Elena Armas',
+    genre: 'Romantic Comedy',
+    year: 2021,
+    available: true,
+    vibe: 'Slow Burn, Sassy',
+    copies: 2
+  }
+]
+
+Explanation:
+Finds all books where the genre is either "Romantic Comedy" or "Young Adult Romance".
+
+libraryDB> db.books.find({ genre: { $in: ["Romantic Comedy", "Young Adult Romance"] } })db.books.find({ $and: [{ available: true }, { copies: { $gt: 3 } }] })
+
+libraryDB> db.books.find({ $and: [{ available: true }, { copies: { $gt: 3 } }] })
+[
+  {
+    _id: ObjectId('688709cd32598c9e41eec4aa'),
+    title: 'The Flatshare',
+    author: "Beth O'Leary",
+    genre: 'Romantic Comedy',
+    year: 2019,
+    available: true,
+    vibe: 'Funny, Soft, Feel-good',
+    copies: 4
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ad'),
+    title: "To All the Boys I've Loved Before",
+    author: 'Jenny Han',
+    genre: 'Young Adult Romance',
+    year: 2014,
+    available: true,
+    vibe: 'Cute, Fluffy',
+    copies: 5
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ae'),
+    title: 'The Love Hypothesis',
+    author: 'Ali Hazelwood',
+    genre: 'Romantic Comedy',
+    year: 2021,
+    available: true,
+    vibe: 'Nerdy, Flirty',
+    copies: 4
+  }
+]
+
+Explanation:
+Finds books that are available and have more than 3 copies.
+
+libraryDB> db.books.find({ $or: [{ genre: "Romantic Drama" }, { year: { $lt: 2016 } }] })
+[
+  {
+    _id: ObjectId('68870929a18f7076bfeec4a9'),
+    title: 'Me Before You',
+    author: 'Jojo Moyes',
+    genre: 'Romantic Drama',
+    vibe: 'Emotional, Heartwarming',
+    themes: [ 'romance', 'life decisions', 'healing' ]
+  },
+  {
+    _id: ObjectId('688709bd32598c9e41eec4a9'),
+    title: 'Me Before You',
+    author: 'Jojo Moyes',
+    genre: 'Romantic Drama',
+    year: 2012,
+    available: true,
+    vibe: 'Emotional, Heartwarming',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ad'),
+    title: "To All the Boys I've Loved Before",
+    author: 'Jenny Han',
+    genre: 'Young Adult Romance',
+    year: 2014,
+    available: true,
+    vibe: 'Cute, Fluffy',
+    copies: 5
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4b1'),
+    title: 'Before the Coffee Gets Cold',
+    author: 'Toshikazu Kawaguchi',
+    genre: 'Magical Realism',
+    year: 2015,
+    available: true,
+    vibe: 'Calm, Deep, Time-travel',
+    copies: 2
+  }
+]
+
+Explanation:
+Finds books that are either Romantic Drama or published before 2016.
+
+libraryDB> db.books.find({ publisher: { $exists: false } })
+[
+  {
+    _id: ObjectId('68870929a18f7076bfeec4a9'),
+    title: 'Me Before You',
+    author: 'Jojo Moyes',
+    genre: 'Romantic Drama',
+    vibe: 'Emotional, Heartwarming',
+    themes: [ 'romance', 'life decisions', 'healing' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4aa'),
+    title: 'The Flatshare',
+    author: "Beth O'Leary",
+    genre: 'Romantic Comedy',
+    vibe: 'Funny, Soft, Feel-good',
+    themes: [ 'fake relationship', 'roommates', 'slow burn' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ac'),
+    title: 'Love & Gelato',
+    author: 'Jenna Evans Welch',
+    genre: 'Young Adult Romance',
+    vibe: 'Cute, Aesthetic, Light',
+    themes: [ 'travel', 'self-discovery', 'family' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ad'),
+    title: "To All the Boys I've Loved Before",
+    author: 'Jenny Han',
+    genre: 'Young Adult Romance',
+    vibe: 'Cute, Fluffy',
+    themes: [ 'fake dating', 'high school', 'family' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4ae'),
+    title: 'The Love Hypothesis',
+    author: 'Ali Hazelwood',
+    genre: 'Romantic Comedy',
+    vibe: 'Nerdy, Flirty',
+    themes: [ 'fake dating', 'STEM', 'slow burn' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4af'),
+    title: 'The Spanish Love Deception',
+    author: 'Elena Armas',
+    genre: 'Romantic Comedy',
+    vibe: 'Slow Burn, Sassy',
+    themes: [ 'fake relationship', 'wedding', 'enemies to lovers' ],
+    copies: 3
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4b0'),
+    title: 'Eleanor Oliphant Is Completely Fine',
+    author: 'Gail Honeyman',
+    genre: 'Contemporary Fiction',
+    vibe: 'Soft, Emotional Growth',
+    themes: [ 'loneliness', 'healing', 'self-love' ]
+  },
+  {
+    _id: ObjectId('68870932a18f7076bfeec4b1'),
+    title: 'Before the Coffee Gets Cold',
+    author: 'Toshikazu Kawaguchi',
+    genre: 'Magical Realism',
+    vibe: 'Calm, Deep, Time-travel',
+    themes: [ 'regret', 'love', 'second chances' ]
+  },
+  {
+    _id: ObjectId('688709bd32598c9e41eec4a9'),
+    title: 'Me Before You',
+    author: 'Jojo Moyes',
+    genre: 'Romantic Drama',
+    year: 2012,
+    available: true,
+    vibe: 'Emotional, Heartwarming',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4aa'),
+    title: 'The Flatshare',
+    author: "Beth O'Leary",
+    genre: 'Romantic Comedy',
+    year: 2019,
+    available: true,
+    vibe: 'Funny, Soft, Feel-good',
+    copies: 4
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ab'),
+    title: 'It Ends With Us',
+    author: 'Colleen Hoover',
+    genre: 'Contemporary Romance',
+    year: 2016,
+    available: true,
+    vibe: 'Intense, Emotional',
+    copies: 2
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ac'),
+    title: 'Love & Gelato',
+    author: 'Jenna Evans Welch',
+    genre: 'Young Adult Romance',
+    year: 2016,
+    available: true,
+    vibe: 'Cute, Aesthetic, Light',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ad'),
+    title: "To All the Boys I've Loved Before",
+    author: 'Jenny Han',
+    genre: 'Young Adult Romance',
+    year: 2014,
+    available: true,
+    vibe: 'Cute, Fluffy',
+    copies: 5
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4ae'),
+    title: 'The Love Hypothesis',
+    author: 'Ali Hazelwood',
+    genre: 'Romantic Comedy',
+    year: 2021,
+    available: true,
+    vibe: 'Nerdy, Flirty',
+    copies: 4
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4af'),
+    title: 'The Spanish Love Deception',
+    author: 'Elena Armas',
+    genre: 'Romantic Comedy',
+    year: 2021,
+    available: true,
+    vibe: 'Slow Burn, Sassy',
+    copies: 2
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4b0'),
+    title: 'Eleanor Oliphant Is Completely Fine',
+    author: 'Gail Honeyman',
+    genre: 'Contemporary Fiction',
+    year: 2017,
+    available: true,
+    vibe: 'Soft, Emotional Growth',
+    copies: 3
+  },
+  {
+    _id: ObjectId('688709cd32598c9e41eec4b1'),
+    title: 'Before the Coffee Gets Cold',
+    author: 'Toshikazu Kawaguchi',
+    genre: 'Magical Realism',
+    year: 2015,
+    available: true,
+    vibe: 'Calm, Deep, Time-travel',
+    copies: 2
+  }
+]
+
+Explanation:
+Lists books that do not have a publisher field.
+
+libraryDB> db.books.updateMany(
+...   { genre: "Romantic Comedy" },
+...   { $set: { recommended: true } }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 6,
+  modifiedCount: 6,
+  upsertedCount: 0
+}
+
+Explanation:
+Adds a recommended: true field to all Romantic Comedy books.
+
+libraryDB> db.books.deleteMany({})
+{ acknowledged: true, deletedCount: 17 }
+
+Explanation:
+Deletes all documents from the books collection.
+
+libraryDB> db.books.find()
+
+libraryDB> db.books.drop()
+true
+
+Explanation:
+Deletes the entire books collection (structure + data).
